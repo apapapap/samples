@@ -7,7 +7,8 @@ import (
 	"ashish/user-mgmt/pb"
 )
 
-var ErrAlreadyExists = errors.New("record already exists")
+var ErrAlreadyExists = errors.New("user already exists")
+var ErrUserNotFound = errors.New("user not found")
 
 type UserStore interface {
 	Save(user *pb.User) error
@@ -44,7 +45,7 @@ func (store *InMemoryUserStore) Find(id string) (*pb.User, error) {
 
 	user := store.data[id]
 	if user == nil {
-		return nil, nil
+		return nil, ErrUserNotFound
 	}
 
 	return user, nil
