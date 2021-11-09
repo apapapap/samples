@@ -1,14 +1,21 @@
 // 
 syntax = "proto3";
 
+import "proto/role_message.proto";
+
 option go_package = "/pb";
 
 // User
 message User {
   // User ID
   string id = 1;
+
   // Name
   string name = 2;
+
   // Address
   string address = 3;
+
+  // User Roles
+  repeated Role roles = 4;
 }
