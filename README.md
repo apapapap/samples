@@ -20,7 +20,10 @@ To run this application use the `Makefile`, you can use the following commands:
 - **make client**
   - This command will start the GRPC client and dial on 0.0.0.0 at port 8000
   - The client performs the following in the respective order:
-    - Add a User
+    - Add a Role
+    - List Roles
+    - Fetch a role
+    - Add a User with above fetched role
     - List Users
     - Fetch a User
 
