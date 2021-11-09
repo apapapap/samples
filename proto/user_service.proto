@@ -1,0 +1,52 @@
+//
+syntax = "proto3";
+
+import "proto/user_message.proto";
+
+option go_package = "/pb";
+
+// UserService
+service UserService {
+  // AddUser - RPC for adding a user
+  rpc AddUser(AddUserRequest) returns (AddUserResponse) {};
+
+  // FindUser
+  rpc FindUser(FindUserRequest) returns (FindUserResponse) {};
+
+  // FindUsers
+  rpc FindUsers(FindUsersRequest) returns (FindUsersResponse) {};
+}
+
+// AddUserRequest
+message AddUserRequest {
+  // User
+  User user = 1;
+}
+
+// AddUserResponse -
+message AddUserResponse {
+  // User ID
+  string id = 1;
+}
+
+// FindUserRequest
+message FindUserRequest {
+  // User ID to find
+  string id = 1;
+}
+
+// FindUserResponse -
+message FindUserResponse {
+  // User to return
+  User user = 1;
+}
+
+// FindUsersRequest
+message FindUsersRequest {
+}
+
+// FindUsersResponse -
+message FindUsersResponse {
+  // List of users to return
+  repeated User users = 1;
+}

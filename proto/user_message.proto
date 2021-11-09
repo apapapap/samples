@@ -1,0 +1,14 @@
+// 
+syntax = "proto3";
+
+option go_package = "/pb";
+
+// User
+message User {
+  // User ID
+  string id = 1;
+  // Name
+  string name = 2;
+  // Address
+  string address = 3;
+}
