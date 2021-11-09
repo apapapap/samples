@@ -1,0 +1,38 @@
+// 
+syntax = "proto3";
+
+option go_package = "/pb";
+
+// Permissions
+enum Permissions {
+  //
+  UNKNOWN = 0;
+  //
+  READWRITE = 1;
+  //
+  READ = 2;
+  //
+  WRITE = 3;
+}
+
+// Name
+enum Name {
+  //
+  UNKNOWN_NAME = 0;
+  //
+  OWNER = 1;
+  //
+  ADMIN = 2;
+  //
+  CUSTOMER = 3;
+}
+
+// Role
+message Role {
+
+  // Role Name
+  Name name = 1;
+  
+  // Permissions
+  repeated Permissions permissions = 2;
+}

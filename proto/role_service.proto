@@ -1,0 +1,52 @@
+//
+syntax = "proto3";
+
+import "proto/role_message.proto";
+
+option go_package = "/pb";
+
+// RoleService
+service RoleService {
+  // AddRole - RPC for adding a role
+  rpc AddRole(AddRoleRequest) returns (AddRoleResponse) {};
+
+  // FindRole
+  rpc FindRole(FindRoleRequest) returns (FindRoleResponse) {};
+
+  // FindRoles
+  rpc FindRoles(FindRolesRequest) returns (FindRolesResponse) {};
+}
+
+// AddRoleRequest
+message AddRoleRequest {
+  // Role
+  Role role = 1;
+}
+
+// AddRoleResponse -
+message AddRoleResponse {
+  // Role Name
+  string name = 1;
+}
+
+// FindRoleRequest
+message FindRoleRequest {
+  // Role name to find
+  string name = 1;
+}
+
+// FindRoleResponse -
+message FindRoleResponse {
+  // Role to return
+  Role role = 1;
+}
+
+// FindRolesRequest
+message FindRolesRequest {
+}
+
+// FindRolesResponse -
+message FindRolesResponse {
+  // List of roles to return
+  repeated Role roles = 1;
+}
