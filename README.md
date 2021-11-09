@@ -23,3 +23,13 @@ To run this application use the `Makefile`, you can use the following commands:
     - Add a User
     - List Users
     - Fetch a User
+
+To run the application without `Makefile`, execute the following steps:
+- To generate the `.pb.go` files in the `pb/` directory:
+  - `protoc --go_out=. --go-grpc_out=. proto/*.proto`
+
+- To start GRPC server on specified port:
+  - `go run cmd/server/main.go -port <PORT-NUMBER>`
+
+- To start GRPC client and dial to GRPC server above:
+  - `go run cmd/client/main.go -address 0.0.0.0:8000`
