@@ -1,20 +1,34 @@
 //
 syntax = "proto3";
 
-import "proto/user_message.proto";
+import "google/api/annotations.proto";
+import "user_message.proto";
 
 option go_package = "/pb";
 
 // UserService
 service UserService {
-  // AddUser - RPC for adding a user
-  rpc AddUser(AddUserRequest) returns (AddUserResponse) {};
+  // AddUser - Add a user
+  rpc AddUser(AddUserRequest) returns (AddUserResponse) {
+    option (google.api.http) = {
+      post: "/v1/user/add"
+      body: "*"
+    };
+  };
 
   // FindUser
-  rpc FindUser(FindUserRequest) returns (FindUserResponse) {};
+  rpc FindUser(FindUserRequest) returns (FindUserResponse) {
+    option (google.api.http) = {
+      get: "/v1/user/get/{id}"
+    };
+  };
 
   // FindUsers
-  rpc FindUsers(FindUsersRequest) returns (FindUsersResponse) {};
+  rpc FindUsers(FindUsersRequest) returns (FindUsersResponse) {
+    option (google.api.http) = {
+      get: "/v1/user/list"
+    };
+  };
 }
 
 // AddUserRequest

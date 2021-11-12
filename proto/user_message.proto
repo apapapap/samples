@@ -1,7 +1,7 @@
 // 
 syntax = "proto3";
 
-import "proto/role_message.proto";
+import "role_message.proto";
 
 option go_package = "/pb";
 

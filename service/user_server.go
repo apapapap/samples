@@ -61,6 +61,7 @@ func (server *UserServer) AddUser(ctx context.Context, req *pb.AddUserRequest) (
 }
 
 func (server *UserServer) FindUser(ctx context.Context, req *pb.FindUserRequest) (*pb.FindUserResponse, error) {
+	log.Printf("Received a find-user request for id: %s", req.Id)
 	found, err := server.userStore.Find(req.Id)
 	if err != nil {
 		errMsg := fmt.Sprintf("cannot find user: %v", err)
@@ -75,10 +76,13 @@ func (server *UserServer) FindUser(ctx context.Context, req *pb.FindUserRequest)
 	res := &pb.FindUserResponse{
 		User: found,
 	}
+
+	log.Printf("found user with id: %s", req.Id)
 	return res, nil
 }
 
 func (server *UserServer) FindUsers(ctx context.Context, req *pb.FindUsersRequest) (*pb.FindUsersResponse, error) {
+	log.Printf("Received a find-all-users request")
 	usersMap, err := server.userStore.FindAll()
 	if err != nil {
 		errMsg := fmt.Sprintf("cannot find users: %v", err)
@@ -100,5 +104,7 @@ func (server *UserServer) FindUsers(ctx context.Context, req *pb.FindUsersReques
 	res := &pb.FindUsersResponse{
 		Users: users,
 	}
+
+	log.Printf("found all users")
 	return res, nil
 }

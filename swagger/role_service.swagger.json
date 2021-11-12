@@ -1,0 +1,120 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "role_service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "RoleService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "AddRoleResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Role Name"
+        }
+      },
+      "title": "AddRoleResponse -"
+    },
+    "FindRoleResponse": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "$ref": "#/definitions/Role",
+          "title": "Role to return"
+        }
+      },
+      "title": "FindRoleResponse -"
+    },
+    "FindRolesResponse": {
+      "type": "object",
+      "properties": {
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Role"
+          },
+          "title": "List of roles to return"
+        }
+      },
+      "title": "FindRolesResponse -"
+    },
+    "Name": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_NAME",
+        "OWNER",
+        "ADMIN",
+        "CUSTOMER"
+      ],
+      "default": "UNKNOWN_NAME",
+      "title": "Name"
+    },
+    "Permissions": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "READWRITE",
+        "READ",
+        "WRITE"
+      ],
+      "default": "UNKNOWN",
+      "title": "Permissions"
+    },
+    "Role": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/Name",
+          "title": "Role Name"
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Permissions"
+          },
+          "title": "Permissions"
+        }
+      },
+      "title": "Role"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

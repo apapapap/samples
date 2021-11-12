@@ -1,0 +1,244 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "user_service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "UserService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/user/add": {
+      "post": {
+        "summary": "AddUser - Add a user",
+        "operationId": "UserService_AddUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
+    "/v1/user/get/{id}": {
+      "get": {
+        "summary": "FindUser",
+        "operationId": "UserService_FindUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FindUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "User ID to find",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
+    "/v1/user/list": {
+      "get": {
+        "summary": "FindUsers",
+        "operationId": "UserService_FindUsers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FindUsersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "UserService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AddUserRequest": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/User",
+          "title": "User"
+        }
+      },
+      "title": "AddUserRequest"
+    },
+    "AddUserResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "User ID"
+        }
+      },
+      "title": "AddUserResponse -"
+    },
+    "FindUserResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/User",
+          "title": "User to return"
+        }
+      },
+      "title": "FindUserResponse -"
+    },
+    "FindUsersResponse": {
+      "type": "object",
+      "properties": {
+        "users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/User"
+          },
+          "title": "List of users to return"
+        }
+      },
+      "title": "FindUsersResponse -"
+    },
+    "Name": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_NAME",
+        "OWNER",
+        "ADMIN",
+        "CUSTOMER"
+      ],
+      "default": "UNKNOWN_NAME",
+      "title": "Name"
+    },
+    "Permissions": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "READWRITE",
+        "READ",
+        "WRITE"
+      ],
+      "default": "UNKNOWN",
+      "title": "Permissions"
+    },
+    "Role": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/Name",
+          "title": "Role Name"
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Permissions"
+          },
+          "title": "Permissions"
+        }
+      },
+      "title": "Role"
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "User ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "address": {
+          "type": "string",
+          "title": "Address"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Role"
+          },
+          "title": "User Roles"
+        }
+      },
+      "title": "User"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
