@@ -50,12 +50,17 @@ func runGRPCServer(userServer pb.UserServiceServer, roleServer pb.RoleServiceSer
 	return grpcServer.Serve(listener)
 }
 
-func runRESTServer(userServer pb.UserServiceServer, listener net.Listener) error {
+func runRESTServer(userServer pb.UserServiceServer, roleServer pb.RoleServiceServer, listener net.Listener) error {
 	mux := runtime.NewServeMux()
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	err := pb.RegisterUserServiceHandlerServer(ctx, mux, userServer)
+	if err != nil {
+		return err
+	}
+
+	err = pb.RegisterRoleServiceHandlerServer(ctx, mux, roleServer)
 	if err != nil {
 		return err
 	}

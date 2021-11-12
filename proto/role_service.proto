@@ -1,6 +1,7 @@
 //
 syntax = "proto3";
 
+import "google/api/annotations.proto";
 import "role_message.proto";
 
 option go_package = "/pb";
@@ -8,13 +9,26 @@ option go_package = "/pb";
 // RoleService
 service RoleService {
   // AddRole - RPC for adding a role
-  rpc AddRole(AddRoleRequest) returns (AddRoleResponse) {};
+  rpc AddRole(AddRoleRequest) returns (AddRoleResponse) {
+    option (google.api.http) = {
+      post: "/v1/role/add"
+      body: "*"
+    };
+  };
 
   // FindRole
-  rpc FindRole(FindRoleRequest) returns (FindRoleResponse) {};
+  rpc FindRole(FindRoleRequest) returns (FindRoleResponse) {
+    option (google.api.http) = {
+      get: "/v1/role/get/{name}"
+    };
+  };
 
   // FindRoles
-  rpc FindRoles(FindRolesRequest) returns (FindRolesResponse) {};
+  rpc FindRoles(FindRolesRequest) returns (FindRolesResponse) {
+    option (google.api.http) = {
+      get: "/v1/role/list"
+    };
+  };
 }
 
 // AddRoleRequest
