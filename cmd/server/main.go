@@ -33,7 +33,7 @@ func main() {
 	if *serverType == "grpc" {
 		err = runGRPCServer(userServer, roleServer, listener)
 	} else {
-		err = runRESTServer(userServer, listener)
+		err = runRESTServer(userServer, roleServer, listener)
 	}
 
 	if err != nil {
