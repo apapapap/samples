@@ -6,7 +6,7 @@
 - Go 1.17 or higher
 - Protoc 3.6.1 or higher
 
-### Run the application
+### Run the application as GRPC server
 To run this application use the `Makefile`, you can use the following commands:
 - **make clean**
   - This command will clean the existing auto-generated `.pb.go` files from the `pb/` directory.
@@ -26,6 +26,20 @@ To run this application use the `Makefile`, you can use the following commands:
     - Add a User with above fetched role
     - List Users
     - Fetch a User
+
+### Run the application as REST server via GRPC gateway
+To run this application use the `Makefile`, you can use the following commands:
+- **make clean**
+  - This command will clean the existing auto-generated `.pb.go` files from the `pb/` directory.
+ 
+- **make gen**
+  - This command will auto-generate the `.pb.go` files in the `pb/` directory.  
+
+- **make server**
+  - This command will start the GRPC server on 0.0.0.0 at port 8000
+
+- **make rest**
+  - This command will start the REST server on 0.0.0.0 at port 8001
 
 To run the application without `Makefile`, execute the following steps:
 - To generate the `.pb.go` files in the `pb/` directory:
