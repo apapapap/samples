@@ -8,7 +8,7 @@ server:
 	go run cmd/server/main.go -port 8000
 
 rest:
-	go run cmd/server/main.go -port 8081 -server-type rest
+	go run cmd/server/main.go -port 8001 -server-type rest
 
 client:
 	go run cmd/client/main.go -address 0.0.0.0:8000
