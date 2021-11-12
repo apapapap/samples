@@ -4,11 +4,14 @@ gen:
 clean:
 	rm pb/*.go
 
-server:
-	go run cmd/server/main.go -port 8000
+grpc:
+	go run cmd/server/main.go -grpc-port 8000 -server-type grpc
 
 rest:
-	go run cmd/server/main.go -port 8001 -server-type rest
+	go run cmd/server/main.go -http-port 8001 -server-type rest
+
+both:
+	go run cmd/server/main.go -grpc-port 8000 -http-port 8001
 
 client:
 	go run cmd/client/main.go -address 0.0.0.0:8000
