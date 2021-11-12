@@ -51,4 +51,4 @@ To run this application use the `Makefile`, you can use the following commands:
 - **make both**
   - This command will start the GRPC server on 0.0.0.0 at port 8000 and the REST server on 0.0.0.0 at port 8001
 
-- **Use client(Postman/curl) of your choice to run the REST endpoint and/or you can also run `make client`**
+- **Use client(Postman/curl) of your choice to run the REST endpoint and/or you can also run `make client` to use the gRPC server**
