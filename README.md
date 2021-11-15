@@ -52,3 +52,41 @@ To run this application use the `Makefile`, you can use the following commands:
   - This command will start the GRPC server on 0.0.0.0 at port 8000 and the REST server on 0.0.0.0 at port 8001
 
 - **Use client(Postman/curl) of your choice to run the REST endpoint and/or you can also run `make client` to use the gRPC server**
+
+
+### Sample REST requests
+- **Add User**
+  - ```
+    curl -X 'POST' \
+    'http://localhost:8081/v1/user/add' \
+    -H 'accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+          "user": {
+            "id": "9182c36f-e98c-4424-9fcf-d3a14a85e17d",
+            "name": "pratik",
+            "address": "mumbai",
+            "roles": [
+              {
+                 "name": "OWNER",
+                 "permissions": [
+                    "READWRITE"
+                 ]
+              }
+            ]
+         }
+       }'
+       ```
+- **Fetch User by ID**
+  - ```
+    curl -X 'GET' \
+        'http://localhost:8081/v1/user/get/9182c36f-e98c-4424-9fcf-d3a14a85d16b' \
+        -H 'accept: application/json'
+    ```
+
+- **Fetch Users**
+  - ```
+    curl -X 'GET' \
+        'http://localhost:8081/v1/user/list' \
+        -H 'accept: application/json'
+    ```
